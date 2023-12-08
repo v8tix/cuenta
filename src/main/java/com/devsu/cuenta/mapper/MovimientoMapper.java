@@ -1,23 +1,15 @@
 package com.devsu.cuenta.mapper;
 
-import com.devsu.cuenta.dto.CuentaRequest;
 import com.devsu.cuenta.dto.MovimientoRequest;
-import com.devsu.cuenta.model.Cuenta;
 import com.devsu.cuenta.model.Movimiento;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 @Component
 public class MovimientoMapper {
-
     private final ModelMapper modelMapper;
-
-    @Autowired
     public MovimientoMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
-
         modelMapper.addMappings(new PropertyMap<MovimientoRequest, Movimiento>() {
             @Override
             protected void configure() {

@@ -1,16 +1,13 @@
 package com.devsu.cuenta.dto;
 
-
 import com.devsu.cuenta.request.ValidationGroups;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.UUID;
-
 @Getter
 @Setter
 public class CuentaRequest {

@@ -1,20 +1,14 @@
 package com.devsu.cuenta.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 @Entity
-@Getter
-@Setter
 @Table(name = "movimiento")
 public class Movimiento extends BaseModel {
-
     @Column(name = "fecha")
     private LocalDateTime fecha;
 
@@ -38,6 +32,47 @@ public class Movimiento extends BaseModel {
             fecha = LocalDateTime.now();
         }
     }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getTipoMovimiento() {
+        return tipoMovimiento;
+    }
+
+    public void setTipoMovimiento(String tipoMovimiento) {
+        this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public BigDecimal getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(BigDecimal saldo) {
+        this.saldo = saldo;
+    }
+
+    public Cuenta getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Cuenta cuenta) {
+        this.cuenta = cuenta;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

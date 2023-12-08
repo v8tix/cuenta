@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.UUID;
-
 @Getter
 @Setter
 public class MovimientoRequest {
@@ -33,7 +32,5 @@ public class MovimientoRequest {
     @JsonProperty("cuentaId")
     @NotNull( groups = {ValidationGroups.OnCreate.class, ValidationGroups.OnPutUpdate.class})
     private UUID cuentaId;
-
-
 
 }

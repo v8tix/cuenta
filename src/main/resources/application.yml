@@ -1,3 +1,8 @@
+app:
+  ms:
+    cliente:
+      url: http://localhost:8080
+
 server:
   port: 8081
 spring:
@@ -23,3 +28,10 @@ spring:
             default_schema: public
             store_dataAt_delete: true
 
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full
+        connectTimeout: 5000
+        readTimeout: 5000
