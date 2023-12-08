@@ -26,7 +26,7 @@ public class Cuenta extends BaseModel {
     private BigDecimal saldoInicial;
 
     @Column(name = "estado")
-    private String estado;
+    private Boolean estado;
 
     @Column(name = "cliente_id")
     private UUID clienteId;

@@ -15,7 +15,7 @@ import java.util.UUID;
 public class MovimientoRequest {
 
     @JsonProperty("fecha")
-    @NotNull( groups = {ValidationGroups.OnCreate.class, ValidationGroups.OnPutUpdate.class})
+    @NotNull( groups = {ValidationGroups.OnPutUpdate.class})
     private LocalDateTime fecha;
 
     @JsonProperty("tipoMovimiento")
@@ -27,7 +27,7 @@ public class MovimientoRequest {
     private BigDecimal valor;
 
     @JsonProperty("saldo")
-    @NotNull( groups = {ValidationGroups.OnCreate.class, ValidationGroups.OnPutUpdate.class})
+    @NotNull( groups = {ValidationGroups.OnPutUpdate.class})
     private BigDecimal saldo;
 
     @JsonProperty("cuentaId")
