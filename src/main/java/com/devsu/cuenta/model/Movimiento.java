@@ -32,7 +32,12 @@ public class Movimiento extends BaseModel {
     @JoinColumn(name = "cuenta_id", nullable = false)
     private Cuenta cuenta;
 
-
+    @PrePersist
+    public void prePersist() {
+        if (fecha == null) {
+            fecha = LocalDateTime.now();
+        }
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
