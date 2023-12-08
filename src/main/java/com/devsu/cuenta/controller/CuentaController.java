@@ -5,8 +5,6 @@ import com.devsu.cuenta.mapper.CuentaMapper;
 import com.devsu.cuenta.model.Cuenta;
 import com.devsu.cuenta.request.ValidationGroups;
 import com.devsu.cuenta.service.CuentaService;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,18 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 @RestController
 @RequestMapping("/cuentas")
 public class CuentaController {
-
     private final CuentaService cuentaService;
     private final CuentaMapper cuentaMapper;
     public CuentaController(CuentaService cuentaService, CuentaMapper cuentaMapper) {
         this.cuentaService = cuentaService;
         this.cuentaMapper = cuentaMapper;
     }
-
     @GetMapping
     public List<Cuenta> getAllCuentas() {
         return cuentaService.getAllCuentas();

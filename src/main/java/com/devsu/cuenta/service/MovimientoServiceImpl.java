@@ -7,28 +7,23 @@ import com.devsu.cuenta.mapper.MovimientoMapper;
 import com.devsu.cuenta.model.Movimiento;
 import com.devsu.cuenta.repository.CuentaRepository;
 import com.devsu.cuenta.repository.MovimientoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 @Service
 public class MovimientoServiceImpl implements MovimientoService {
-
     private final MovimientoRepository movimientoRepository;
     private final MovimientoMapper movimientoMapper;
     private final CuentaRepository cuentaRepository;
-
-    @Autowired
     public MovimientoServiceImpl(MovimientoRepository movimientoRepository, MovimientoMapper movimientoMapper, CuentaRepository cuentaRepository) {
         this.movimientoRepository = movimientoRepository;
         this.movimientoMapper = movimientoMapper;
         this.cuentaRepository = cuentaRepository;
     }
-
     @Override
     public List<Movimiento> getAllMovimientos() {
         return movimientoRepository.findAll();
@@ -66,7 +61,6 @@ public class MovimientoServiceImpl implements MovimientoService {
 
         return Optional.ofNullable(nuevoMovimiento);
     }
-
     @Override
     public Optional<Movimiento> updateMovimiento(UUID movimientoId, MovimientoRequest movimientoRequest) {
         Optional<Movimiento> existingMovimientoOptional = movimientoRepository.findById(movimientoId);
@@ -80,5 +74,10 @@ public class MovimientoServiceImpl implements MovimientoService {
     @Override
     public void deleteMovimiento(UUID id) {
         movimientoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Movimiento> getMovimientosByCuentaAndDateRange(UUID cuentaId, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
+        return movimientoRepository.findByCuentaIdAndFechaBetween(cuentaId, fechaInicio, fechaFin);
     }
 }

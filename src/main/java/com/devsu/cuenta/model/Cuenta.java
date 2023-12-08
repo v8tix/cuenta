@@ -1,18 +1,13 @@
 package com.devsu.cuenta.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-
 @Entity
-@Getter
-@Setter
 @Table(name = "cuenta")
 public class Cuenta extends BaseModel {
 
@@ -34,6 +29,46 @@ public class Cuenta extends BaseModel {
     @JsonManagedReference
     @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
     private List<Movimiento> movimientos;
+
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    public String getTipoCuenta() {
+        return tipoCuenta;
+    }
+
+    public void setTipoCuenta(String tipoCuenta) {
+        this.tipoCuenta = tipoCuenta;
+    }
+
+    public BigDecimal getSaldoInicial() {
+        return saldoInicial;
+    }
+
+    public void setSaldoInicial(BigDecimal saldoInicial) {
+        this.saldoInicial = saldoInicial;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public UUID getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(UUID clienteId) {
+        this.clienteId = clienteId;
+    }
 
     @Override
     public boolean equals(Object o) {
