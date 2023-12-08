@@ -1,42 +1,49 @@
 package com.devsu.cuenta.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "cuenta")
-public class Cuenta extends BaseModel {
+@Table(name = "movimiento")
+public class Movimiento extends BaseModel {
 
-    @Id
-    @GeneratedValue(generator = "cuentaId")
-    @GenericGenerator(name = "cuentaId", strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "cuentaId", updatable = false, nullable = false)
-    private UUID cuentaId;
+    @Column(name = "fecha")
+    private LocalDateTime fecha;
 
-    @Column(name = "contrasena")
-    private String contrasena;
+    @Column(name = "tipo_movimiento")
+    private String tipoMovimiento;
 
-    @Column(name = "estado")
-    private String estado;
+    @Column(name = "valor")
+    private BigDecimal valor;
+
+    @Column(name = "saldo")
+    private BigDecimal saldo;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "cuenta_id", nullable = false)
+    private Cuenta cuenta;
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Cuenta cuenta = (Cuenta) o;
-        return Objects.equals(this.cuentaId, cuenta.cuentaId);
+        Movimiento cuenta = (Movimiento) o;
+        return Objects.equals(this.getId(), cuenta.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), cuentaId);
+        return Objects.hash(super.hashCode(), getId());
     }
 }

@@ -1,22 +1,24 @@
 package com.devsu.cuenta.mapper;
 
 import com.devsu.cuenta.dto.CuentaRequest;
+import com.devsu.cuenta.dto.MovimientoRequest;
 import com.devsu.cuenta.model.Cuenta;
+import com.devsu.cuenta.model.Movimiento;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CuentaMapper {
+public class MovimientoMapper {
 
     private final ModelMapper modelMapper;
 
     @Autowired
-    public CuentaMapper(ModelMapper modelMapper) {
+    public MovimientoMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
 
-        modelMapper.addMappings(new PropertyMap<CuentaRequest, Cuenta>() {
+        modelMapper.addMappings(new PropertyMap<MovimientoRequest, Movimiento>() {
             @Override
             protected void configure() {
                 skip(destination.getId());
@@ -24,11 +26,11 @@ public class CuentaMapper {
         });
     }
 
-    public Cuenta convertToCuenta(CuentaRequest cuentaRequest) {
-        return modelMapper.map(cuentaRequest, Cuenta.class);
+    public Movimiento convertToMovimiento(MovimientoRequest movimientoRequest) {
+        return modelMapper.map(movimientoRequest, Movimiento.class);
     }
 
-    public void updateCuentaFromRequest(CuentaRequest cuentaRequest, Cuenta existingCuenta) {
-        modelMapper.map(cuentaRequest, existingCuenta);
+    public void updateMovimientoFromRequest(MovimientoRequest movimientoRequest, Movimiento existingMovimiento) {
+        modelMapper.map(movimientoRequest, existingMovimiento);
     }
 }

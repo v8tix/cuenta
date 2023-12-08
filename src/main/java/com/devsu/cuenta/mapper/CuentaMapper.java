@@ -1,24 +1,34 @@
-package com.devsu.cliente.mapper;
+package com.devsu.cuenta.mapper;
 
-import com.devsu.cliente.dto.ClienteRequest;
-import com.devsu.cliente.model.Cliente;
+import com.devsu.cuenta.dto.CuentaRequest;
+import com.devsu.cuenta.model.Cuenta;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ClienteMapper {
+public class CuentaMapper {
 
     private final ModelMapper modelMapper;
 
-    public ClienteMapper(ModelMapper modelMapper) {
+    @Autowired
+    public CuentaMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
+
+        modelMapper.addMappings(new PropertyMap<CuentaRequest, Cuenta>() {
+            @Override
+            protected void configure() {
+                skip(destination.getId());
+            }
+        });
     }
 
-    public Cliente convertToCliente(ClienteRequest clienteRequest) {
-        return modelMapper.map(clienteRequest, Cliente.class);
+    public Cuenta convertToCuenta(CuentaRequest cuentaRequest) {
+        return modelMapper.map(cuentaRequest, Cuenta.class);
     }
 
-    public void updateClienteFromRequest(ClienteRequest clienteRequest, Cliente existingCliente) {
-        modelMapper.map(clienteRequest, existingCliente);
+    public void updateCuentaFromRequest(CuentaRequest cuentaRequest, Cuenta existingCuenta) {
+        modelMapper.map(cuentaRequest, existingCuenta);
     }
 }
