@@ -27,7 +27,6 @@ spring:
           envers:
             default_schema: public
             store_dataAt_delete: true
-
 feign:
   client:
     config:
